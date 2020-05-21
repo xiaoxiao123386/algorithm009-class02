@@ -314,3 +314,44 @@ class Solution:
   ```
 
 - leetcode好句记录：**犹豫不决先排序，步步逼近双指针** 
+
+
+
+今天在国际站中看到了一个新思路，效率比较高，记录下来
+
+- 基本思路是利用set去重，然后区分三数和为0的情况为四种  3个0， 1个0，1+ 1-，2- 1+，1- 2+。
+
+  ```
+  class Solution:
+      def threeSum(self, nums):
+          # 新看到的优秀解法，利用set去重，然后分几种情况考察
+          res = set([])
+  
+          minus = sorted([n for n in nums if n<0])
+          minus_c = set(minus)
+          len_0 = nums.count(0)
+          plus = sorted([n for n in nums if n>0])
+          plus_c = set(plus)
+  
+          if len_0 > 2:
+              res.add((0,0,0))
+          if len_0 > 0:
+              for i in range(len(minus)):
+                  if -minus[i] in plus_c:
+                      res.add((minus[i],0,-minus[i]))
+          
+          n = len(minus)
+          for i in range(n):
+              for j in range(i+1,n):
+                  if -(minus[i]+minus[j]) in plus_c:
+                      res.add((minus[i],minus[j],-(minus[i]+minus[j])))
+          
+          n = len(plus)
+          for i in range(n):
+              for j in range(i+1,n):
+                  if -(plus[i]+plus[j]) in minus_c:
+                      res.add((-(plus[i]+plus[j]),plus[i],plus[j]))
+          return list(res)
+  ```
+
+  
