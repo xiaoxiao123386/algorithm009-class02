@@ -2,7 +2,114 @@
 
 
 
-# two sum
+# container_with_most_water(>2 times)
+
+- 同样先看题目：给出一串坐标>2，最后输出能容纳最多水的容器，输出值一定有一个，没看到什么坑
+
+- 思路：
+
+  - 1. 暴力，两重循环将所有值求出来然后求最大值
+    2. 无
+
+- 代码：
+
+  - 暴力法  时间复杂度 O(n^2)  空间复杂度O(1)，执行发现超时。。
+
+    ```
+    class Solution:
+        def maxArea(self, height: List[int]) -> int:
+            ans = 0
+            for i in range(len(height)-1):
+                for j in range(len(height)):
+                    temp = min(height[i], height[j])*(j-i)
+                    ans = max(ans, temp)
+            return ans
+    ```
+
+- 反馈（cn leetcode -> com leetcode）：
+
+  - 双指针法（背+理解+写）：  时间复杂度O(n)，空间复杂度O(1)  
+
+    ```
+    class Solution:
+        def maxArea(self, height: List[int]) -> int:
+            i, j = 0, len(height)-1
+            ans = (j - i) * min(height[i], height[j])
+            while i < j:
+                if height[i] > height[j]:
+                    ans = max(ans, height[j]* (j-i))
+                    j-=1
+                else:
+                    ans = max(ans, height[i] * (j-i))
+                    i+=1
+            return ans
+    ```
+
+    
+
+  - 国际站看排名前几个的内容没有新的思路，完成
+
+# move zero(> 3 times)
+
+题目链接：https://leetcode-cn.com/problems/move-zeroes/
+
+## 四步切题法：
+
+- 先看题目，输入数组，输出数组（调整所有0到末尾，保持非0的顺序不变）
+
+  - 限制条件：不能额外拷贝数组，尽量减少操作次数
+
+- 想法：
+
+  - 解法一，统计0的数量，最后删除+补上   时间复杂度最差是O(n^2)，空间复杂度是O(1)
+
+- 代码：
+
+  ```
+          n = nums.count(0)
+          if n == len(nums):
+              return nums
+          for i in range(n):
+              nums.append(0)
+              nums.remove(0)
+          return nums
+  ```
+
+- 测试通过
+
+## 五毒神掌：
+
+看leetcode的解法，记
+
+- 社区解法二，双指针。   时间复杂度是O(n)，空间复杂度是O(1)
+
+  ```
+  # 社区解法二，两个指针，增到非零就互换
+          j = 0
+          for i in range(len(nums)):
+              if nums[i] != 0:
+                  nums[i],nums[j]=nums[j],nums[i]
+                  j+=1
+          return nums
+  ```
+- 社区解法三，双变量，非零元素替换0，然后非0元素置0
+  ```
+        j = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[j] = nums[i]
+                if i != j:
+                    nums[i] = 0
+                j+=1
+        return nums
+
+  ```
+
+- 国际区解法，前几个python3的没看到新的思路
+
+
+
+# two sum（>5 times）
 
 题目链接： https://leetcode-cn.com/problems/two-sum/ 
 
@@ -202,7 +309,7 @@ class Solution(object):
 
 
 
-# three sum
+# three sum(>5 times)
 
 问题链接： https://leetcode-cn.com/problems/3sum/ 
 
