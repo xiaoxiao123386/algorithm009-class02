@@ -1,5 +1,61 @@
 学习笔记
 
+# climb_stairs(> 1 times)
+
+- 先看题目，给出楼梯总数和走的方法，要求输入n，输出按给定方法走的方案
+
+- 思路
+
+  - 先找规律，从n=1，走到n=4，基本是规律就是f(n) = f(n-1) + f(n-2)
+
+  - 没有其它思路，接下来就是写代码了
+
+- 代码，基础比较薄弱，没有真正从思路到翻译代码的过程
+
+- 反馈
+
+  - cn社区看，收集到三种方法(除了公式法，都自己又写了一遍)
+
+    - 第一种：我自己没实现的那种 时间、空间复杂度都是O(n)
+
+      ```
+              climb = {}
+              climb[0] = 0
+              climb[1] = 1
+              climb[2] = 2
+      
+              for i in range(3, n+1):
+                  climb[i] = climb[i-1] + climb[i-2]
+              return climb[n]
+      
+      ```
+
+    - 第二种，用for循环来实现递归  时间O(n) 空间O(1)
+
+      ```
+      		fc = 1
+              sc = 2
+              res = 0
+              for i in range(2, n):
+                  res = fc + sc
+      
+                  fc = sc
+                  sc = res
+              return max(n, res)
+      ```
+
+    - 第三种，公式法。 直接用数列的公式来写代码
+
+      ```
+              import math
+              sqrt5 = 5**0.5
+              fibin=math.pow((1+sqrt5)/2,n+1)-math.pow((1-sqrt5)/2,n+1)
+              return int(fibin/sqrt5)
+      
+      ```
+
+  - com社区，暂时没看到新的思路，下一遍再找找
+
 
 
 # container_with_most_water(>2 times)
