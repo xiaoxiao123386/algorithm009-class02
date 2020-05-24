@@ -4,7 +4,53 @@
 
 
 
+# rotate-array(=1 time)
 
+- 题目，输入一个数组及翻转的个数，输出翻转后的数组，要求原地算法
+
+- 思路：
+
+  - python 切片
+
+- 代码：
+
+  ```
+  		n = len(nums)
+  		k%=n
+  		nums[:]=nums[n-k:]+nums[:n-k]
+  
+  ```
+
+- 反馈：社区找到两种解法
+
+  - Python的insert
+
+    ```
+            n = len(nums)
+            k %= n
+            for i in range(k):
+                nums.insert(0, nums.pop())
+    
+    ```
+
+    
+
+  - 三次翻转
+
+    ```
+    		def swap(l,r):
+                while l < r:
+                    nums[l], nums[r] = nums[r], nums[l]
+                    l+=1
+                    r-=1
+            length= len(nums)
+            k%=length
+            swap(0,length-k-1)
+            swap(length-k,length-1)
+            swap(0, length-1)
+    ```
+
+- 国际社区及过遍数，暂时还来不及做，后续需要补充上
 
 # remove-duplicates-from-sorted-array（=1 time）
 
