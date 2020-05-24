@@ -1,10 +1,41 @@
-学习笔记
+# 学习笔记（只看标题有作业题的目录内容即可，其它是做错的...  最上面最晚做）
 
 [TOC]
 
 
 
-# swapPairs
+
+
+# remove-duplicates-from-sorted-array（=1 time）
+
+- 先看题目，输入排好序的数组，输出：删除重复元素，返回操作后的数组长度，限制：原地操作，不用额外空间
+
+- 思路：
+
+  - 将数组转为set，然后转回list —— 这个不符合题目的要求
+  - 双指针遍历，当两个指标值不等的时候，将快指针的值赋给慢指针
+
+- 转代码：
+
+  - 思路一：忽略，set、list操作不是原地的
+
+  - 思路二：
+
+    ```
+    lass Solution:
+        def removeDuplicates(self, nums: List[int]) -> int:
+            if not nums: return 0
+            i = 0
+            for j in range(1, len(nums)):
+                if nums[i] != nums[j]:
+                    i+=1
+                    nums[i]=nums[j]
+            return i+1
+    ```
+
+- 社区python3查了下，暂时没看到其它思路（下一遍再看）
+
+# swapPairs（=1 time）
 
 - 先看题目，输入输出很明确，看起来也没有什么坑
 
@@ -258,7 +289,7 @@
 
 
 
-# two sum（>5 times）  _   作业题
+# two sum（>5 times）    ——   作业题
 
 题目链接： https://leetcode-cn.com/problems/two-sum/ 
 
