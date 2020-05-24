@@ -1,5 +1,98 @@
 学习笔记
 
+[TOC]
+
+
+
+# swapPairs
+
+- 先看题目，输入输出很明确，看起来也没有什么坑
+
+- 思路：知道怎么做，但不知道代码怎么写
+
+- 代码：略
+
+- 背代码、理解(这里只涉及到一种三指针，没有深入，因为发现写错作业了-_-!):
+
+  ```
+          thead = ListNode(-1)
+          thead.next = head
+          c = thead
+          while c.next and c.next.next:
+              a = c.next
+              b = c.next.next
+              c.next = b
+              a.next = b.next
+              b.next = a
+  
+              c = c.next.next
+          return thead.next
+  
+  ```
+
+  
+
+# reversed_linked_list
+
+- 先看题目，输入输出很明确，看起来也没有什么坑
+
+- 思路：知道怎么做，但不知道代码怎么写
+
+- 代码：略
+
+- 背代码、理解(这里涉及到三种方式,国际站暂时没有看到新的思路):
+
+  - 迭代（双指针，时间复杂度O(n)，空间复杂度O(1)）
+
+    ```
+    		cur = None
+            pre = head
+            while pre:
+                tmp = pre.next
+                pre.next = cur 
+                cur = pre
+                pre = tmp
+            return cur
+    ```
+
+  - 递归
+
+    - 思路：大问题分解为相同求解思路的小问题，然后找到终止条件（空链表或单节点链表）
+
+      ```
+              # 第二种解法，递归实现
+              if not head or not head.next:
+                  return head
+              newHead = self.reverseList(head.next)
+              head.next.next = head
+              head.next = None
+              return newHead
+      ```
+
+  - 妖魔化的双指针
+
+    - 思路： 原链表的头结点就是反转之后链表的尾结点，使用 head标记，不断的将它的next往右移直到链表尾部。 cur就在head.next之后一直往右移一直到这新head，然后返回cur
+
+      ```
+              if head == None:
+                  return None
+              cur = head
+              while head.next:
+                  tmp = head.next.next  # 存下一步该指向的节点
+                  head.next.next = cur  # 新链表的对应关系确定
+                  cur = head.next       # 不断右移指针
+                  head.next = tmp       # 移动head.next到下一个位置
+      
+              return cur
+      
+      ```
+
+      
+
+  
+
+- 反馈，重复做
+
 # climb_stairs(> 1 times)
 
 - 先看题目，给出楼梯总数和走的方法，要求输入n，输出按给定方法走的方案
@@ -105,7 +198,7 @@
 
   - 国际站看排名前几个的内容没有新的思路，完成
 
-# move zero(> 3 times)
+# move zero(> 3 times) ——作业题
 
 题目链接：https://leetcode-cn.com/problems/move-zeroes/
 
@@ -165,7 +258,7 @@
 
 
 
-# two sum（>5 times）
+# two sum（>5 times）  _   作业题
 
 题目链接： https://leetcode-cn.com/problems/two-sum/ 
 
