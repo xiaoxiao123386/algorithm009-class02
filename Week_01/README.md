@@ -1,10 +1,10 @@
-# 学习笔记（只看标题有作业题的目录内容即可，其它是做错的...  最上面最晚做）
+# 学习笔记（只看标题有作业题的目录内容即可，其它是做错范围的题...  越上面是越晚做的）
 
 [TOC]
 
 
 
-# rotate-array(=1 time)
+# 1. rotate-array(=1 time) —— 作业题
 
 - 题目，输入一个数组及翻转的个数，输出翻转后的数组，要求原地算法
 
@@ -52,7 +52,7 @@
 
 - 国际社区及过遍数，暂时还来不及做，后续需要补充上
 
-# remove-duplicates-from-sorted-array（=1 time）
+# 2. remove-duplicates-from-sorted-array（=1 time） —— 作业题
 
 - 先看题目，输入排好序的数组，输出：删除重复元素，返回操作后的数组长度，限制：原地操作，不用额外空间
 
@@ -81,7 +81,7 @@
 
 - 社区python3查了下，暂时没看到其它思路（下一遍再看）
 
-# swapPairs（=1 time）
+# 3. swapPairs（=1 time）
 
 - 先看题目，输入输出很明确，看起来也没有什么坑
 
@@ -109,7 +109,7 @@
 
   
 
-# reversed_linked_list
+# 4. reversed_linked_list
 
 - 先看题目，输入输出很明确，看起来也没有什么坑
 
@@ -170,7 +170,7 @@
 
 - 反馈，重复做
 
-# climb_stairs(> 1 times)
+# 5. climb_stairs(> 1 times)
 
 - 先看题目，给出楼梯总数和走的方法，要求输入n，输出按给定方法走的方案
 
@@ -228,7 +228,7 @@
 
 
 
-# container_with_most_water(>2 times)
+# 6. container_with_most_water(>2 times)
 
 - 同样先看题目：给出一串坐标>2，最后输出能容纳最多水的容器，输出值一定有一个，没看到什么坑
 
@@ -275,7 +275,7 @@
 
   - 国际站看排名前几个的内容没有新的思路，完成
 
-# move zero(> 3 times) ——作业题
+# 7. move zero(> 3 times) ——作业题
 
 题目链接：https://leetcode-cn.com/problems/move-zeroes/
 
@@ -335,7 +335,7 @@
 
 
 
-# two sum（>5 times）    ——   作业题
+# 8. two sum（>5 times）    ——   作业题
 
 题目链接： https://leetcode-cn.com/problems/two-sum/ 
 
@@ -535,7 +535,7 @@ class Solution(object):
 
 
 
-# three sum(>5 times)
+# 9. three sum(>5 times)
 
 问题链接： https://leetcode-cn.com/problems/3sum/ 
 
