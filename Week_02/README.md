@@ -4,11 +4,11 @@
 
 > 第一题：HashMap小结，几乎无基础，也不熟悉Java，选择不做
 
-| 名称          | 刷题次数 | 更新时间 |
-| ------------- | -------- | -------- |
-| valid-anagram |          |          |
-| twosum        |          |          |
-|               |          |          |
+| 名称                          | 刷题次数 | 更新时间 |
+| ----------------------------- | -------- | -------- |
+| valid-anagram                 | 3        |          |
+| twosum                        | 7        |          |
+| n-ary-tree-preorder-traversal | 2        |          |
 
 
 
@@ -94,7 +94,7 @@
 
 
 
-## 2. [twosum]( https://leetcode-cn.com/problems/two-sum/description/ )
+## 2. [twosum](https://leetcode-cn.com/problems/two-sum/description/)
 
 之前已经作过了>5遍，这里仅记录最终学到的代码
 
@@ -116,11 +116,62 @@ class Solution:
 
 
 
-## 3. [n-ary-tree-preorder-traversal]( https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/description/ )
+## 3. [n-ary-tree-preorder-traversal](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/description/)
+
+- 看题，知道怎么走，不知道怎么写
+
+- 思路：无
+
+- 代码：直接背+写
+
+  - 递归
+
+    ```
+    
+            # first recursion
+            if not root: return []
+            res = [root.val]
+            for i in root.children:
+                res += self.preorder(i)
+            return res
+    ```
+
+  - 加栈
+
+    ```
+    		# second: stack
+            res = []
+            stack = [root]
+            while stack:
+                node = stack.pop()
+                if node:
+                    res.append(node.val)
+                    for i in node.children[::-1]:
+                        stack.append(i)
+            return res
+    
+    ```
+
+    
+
+  - com most vote answer， 在上个方法基础上再优化一些语句
+
+    ```
+    		# third: leetcode.com most vote answer
+            res, q = [], root and [root]
+            while q:
+                node = q.pop()
+                res.append(node.val)
+                q+=[child for child in node.children[::-1] if child]  #优雅的实现
+            return res
+    
+    ```
+
+- 反馈，见上面代码环节
 
 
 
-## 4. [heapsort自学](  https://www.geeksforgeeks.org/heap-sort/ )
+## 4. [heapsort自学]( https://www.geeksforgeeks.org/heap-sort/)
 
 
 
