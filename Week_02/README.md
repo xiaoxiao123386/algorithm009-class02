@@ -4,12 +4,6 @@
 
 > 第一题：HashMap小结，几乎无基础，也不熟悉Java，选择不做
 
-| 名称                          | 刷题次数 | 更新时间 |
-| ----------------------------- | -------- | -------- |
-| valid-anagram                 | 3        |          |
-| twosum                        | 7        |          |
-| n-ary-tree-preorder-traversal | 2        |          |
-
 
 
 ## 1. [valid-anagram]( https://leetcode-cn.com/problems/valid-anagram/description/ )
@@ -98,7 +92,7 @@
 
 之前已经作过了>5遍，这里仅记录最终学到的代码
 
-- 一轮hash解决，每次只在前面存的hash表里面查即可
+- 一轮hash解决，每次只在前面存的hash表里面查即可  时间复杂度O(N)
 
 ```
 class Solution:
@@ -124,7 +118,7 @@ class Solution:
 
 - 代码：直接背+写
 
-  - 递归
+  - 递归 
 
     ```
     
@@ -173,15 +167,145 @@ class Solution:
 
 ## 4. [heapsort自学]( https://www.geeksforgeeks.org/heap-sort/)
 
+- 简单看了视频，没有深入学习
+- **回头第二轮需要再巩固**
+
+## 5. [group-anagrams](https://leetcode-cn.com/problems/group-anagrams/)
+
+- 看题：输入字符串数组、输出：将字符串按异位词同组放一起，只考虑小写字母，不用考虑输出顺序
+
+- 思路：
+
+  - 暴力：依次遍历数组中所有字符串，找出其异位词个数，然后append到结果数组中，中间还要涉及到中间结果的保存和去重操作
+
+    ```
+    结果：10分钟内没写出来（写出来的结果不对）
+    ```
+
+- 代码：同上
+
+  - 直接看社区答案
+
+    - 暴力法
+
+      ```
+              # 纯暴力 利用sorted函数来做，匹配到就从原数组删除
+              res = []
+              for word in strs[:]:
+                  lst = []
+                  key = sorted(word)
+                  for item in strs[:]:
+                      if sorted(item) == key:
+                          lst.append(item)
+                          strs.remove(item)
+      
+                  if lst:
+                      res.append(lst)
+              return res
+      
+      ```
+
+    - 字典法
+
+      ```
+      		res = {}
+              for item in strs:
+                  key = ''.join(sorted(item))  # 确定唯一的键值，也可以用tuple
+                  res[key] = res.get(key, [])+[item] # 也可以用key in dict来判断，但这种明显更优雅
+              return list(res.values())
+      ```
+
+    - 还有一种素数法，思路比较巧妙，下轮再关注
+
+    
+
+- 反馈：如上
+
+## 6. [binary-tree-inorder-traversal](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+
+- 看题，中序遍历，比较直接
+
+- 思路
+
+  - 递归法
+
+- 代码：
+
+  - 递归法 时间复杂度O(2^n)?  空间复杂度O(n)
+
+    ```
+    		res = []
+            if root:
+                res+=self.inorderTraversal(root.left)
+                res.append(root.val)
+                res+=self.inorderTraversal(root.right)
+            return res
+    
+    ```
+
+- 反馈：
+
+  - 学习迭代法，学习社区的好理解版本
+
+    ```
+            # second: iteration with stack
+            WHITE, GRAY = 0, 1
+            res = []
+            stack = [(WHITE, root)]
+            while stack:
+                color , node = stack.pop()
+                if node is None: continue
+                if color == WHITE:
+                    stack.append((WHITE, node.right))
+                    stack.append((GRAY, node))
+                    stack.append((WHITE, node.left))
+                else:
+                    res.append(node.val)
+            return res
+            
+    ```
+
+  - 莫里斯遍历（暂时还没了解，下一轮看视频再补充）
+
+## 7. [binary-tree-preorder-traversal](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
+
+- 思路跟6是一致的，不再重复记录
+- 待办：依然是莫里斯遍历
+
+## 8. [n-ary-tree-level-order-traversal](https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/)
+
+- 看题：实现N叉树的层序遍历
+
+- 思路：无
+
+- 代码：无
+
+- 学：
+
+  - 先看一种直接的解法，每次将一层完全走一遍
+
+    ```
+    if not root: return []
+            level = [root]
+            res = []
+            
+            while level:
+                res.append([node.val for node in level])
+                level = [child for node in level for child in node.children]
+            return res
+    ```
+
+    
+
+    
+
+## 9. [chou-shu-lcof](https://leetcode-cn.com/problems/chou-shu-lcof/)
+
+## 10.[top-k-frequent-elements](https://leetcode-cn.com/problems/top-k-frequent-elements/ )
 
 
-## 5. 
 
 
 
- https://leetcode-cn.com/problems/group-anagrams/
-https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
-https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
-https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/
-https://leetcode-cn.com/problems/chou-shu-lcof/
-https://leetcode-cn.com/problems/top-k-frequent-elements/ 
+
+
