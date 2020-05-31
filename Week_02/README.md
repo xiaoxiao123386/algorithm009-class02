@@ -295,13 +295,79 @@ class Solution:
             return res
     ```
 
-    
+- 反馈：先记住这一种方法，等第二轮回来看
 
-    
+  
 
 ## 9. [chou-shu-lcof](https://leetcode-cn.com/problems/chou-shu-lcof/)
 
-## 10.[top-k-frequent-elements](https://leetcode-cn.com/problems/top-k-frequent-elements/ )
+- 看题：求从1开始数的第n个丑数，丑数的定义：1是，然后后面只包含2、3、5因子的叫丑数，n<=1690
+
+- 思路：
+
+  - 暴力，每给出一个n，从头到尾去判断一遍，找到第n个满足条件的数
+
+- 代码：
+
+  - 暴力：没写出来
+
+    - 看社区 会超时 时间复杂度是O(NlogN)，空间复杂度O(1)
+
+      ```
+      class Solution:
+          def isugly(self, num):
+        if num < 0:
+                  return False
+          while (num % 2 == 0):
+                  num/=2
+              while (num % 3 == 0):
+                  num/=3
+              while (num % 5 == 0):
+                  num/=5
+              return num==1
+          
+          
+          def nthUglyNumber(self, n: int) -> int:
+              count = 0
+              res = 1
+              while count < n:
+                  if self.isugly(res):
+                      count+=1
+                  res+=1
+              return res-1
+      ```
+      
+    - 暴力法太浪费时间，因此可以看生成丑数的规律，如果已知丑数a，那么a*2|3|5也都是丑数，随后利用最小堆heap来做
+    
+      ```
+      import heapq
+      
+      class Solution:
+          def nthUglyNumber(self, n: int) -> int:
+              # ２、 最小堆法，利用heap特性来做
+              heap = []
+              heapq.heappush(heap, 1)
+              seen = set()
+              seen.add(1)
+      
+              factors = [2, 3, 5]
+      
+              curr_ugly = 1
+              for _ in range(n):
+                  curr_ugly = heapq.heappop(heap)
+                  for j in factors:
+                      new_ugly = curr_ugly * j
+                      if new_ugly not in seen:
+                          seen.add(new_ugly)
+                          heapq.heappush(heap, new_ugly)
+              return curr_ugly
+      ```
+  
+- 反馈，等第二轮再增加
+
+  
+
+## 10.[top-k-frequent-elements](https://leetcode-cn.com/problems/top-k-frequent-elements/ )—— 待完成
 
 
 
